@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "65772098836-5118lir1tvfudmr1hs3frft4820gigll.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "info.fllocal",
+            "certificate_hash": "28bec4af78f4afe73f7577220cdc70592b7eb092"
+          }
+        },
+        {
           "client_id": "65772098836-2ef6ovkjo67pifbmvkkfvennitacd1or.apps.googleusercontent.com",
           "client_type": 3
         }
