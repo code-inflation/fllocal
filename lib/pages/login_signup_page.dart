@@ -1,9 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fllocal/models/fllocal_model.dart';
 import 'package:fllocal/pages/overview_page.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:fllocal/models/fllocal_model.dart';
 
 final GoogleSignIn _googleSignIn = GoogleSignIn();
 final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -19,6 +19,10 @@ Future<FirebaseUser> _handleSignIn(BuildContext context) async {
 
   final FirebaseUser user = await _auth.signInWithCredential(credential);
   print("signed in " + user.displayName);
+
+  ScopedModel.of<FllocalModel>(context).changeName(user.displayName);
+  print("set scoped model to: " + ScopedModel.of<FllocalModel>(context).displayName);
+
   Navigator.push(
     context,
     MaterialPageRoute(

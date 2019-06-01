@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:scoped_model/scoped_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fllocal/models/fllocal_model.dart';
 import 'package:fllocal/pages/post_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -81,11 +81,15 @@ class NewPostFormState extends State<NewPostForm> {
                       .showSnackBar(SnackBar(content: Text('Processing Data')));
                 }
 
-                Post post = new Post(postTitle.text, postMessage.text,
-                    new DateTime.now(), "todo:author");
+                Post post = new Post(
+                    postTitle.text,
+                    postMessage.text,
+                    new DateTime.now(),
+                    ScopedModel.of<FllocalModel>(context).displayName);
                 ScopedModel.of<FllocalModel>(context).posts.add((post));
 
-                CollectionReference posts = Firestore.instance.collection('posts');
+                CollectionReference posts =
+                    Firestore.instance.collection('posts');
                 posts.add(post.toJson());
 
                 Navigator.push(
