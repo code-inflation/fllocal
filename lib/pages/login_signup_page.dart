@@ -1,8 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
+GoogleSignIn _googleSignIn = GoogleSignIn(
+  scopes: <String>[
+    'email',
+    'https://www.googleapis.com/auth/contacts.readonly',
+  ],
+);
 
 class LoginSignUpPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => new _LoginSignUpPageState();
+}
+
+Future<void> _handleSignIn() async {
+  try {
+    await _googleSignIn.signIn();
+  } catch (error) {
+    print(error);
+  }
 }
 
 class _LoginSignUpPageState extends State<LoginSignUpPage> {
@@ -13,8 +29,11 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
         title: new Text("Flutter login demo"),
       ),
       body: new Container(
-        child: new Text("Hello World"),
-      ),
+          child: Center(
+              child: MaterialButton(
+        onPressed: _handleSignIn,
+        child: Text("Login"),
+      ))),
     );
   }
 }
