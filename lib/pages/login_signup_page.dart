@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:scoped_model/scoped_model.dart';
+import 'package:fllocal/models/fllocal_model.dart';
 
 final GoogleSignIn _googleSignIn = GoogleSignIn();
 final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -27,9 +29,10 @@ class LoginSignUpPage extends StatefulWidget {
 class _LoginSignUpPageState extends State<LoginSignUpPage> {
   @override
   Widget build(BuildContext context) {
+    String title = ScopedModel.of<FllocalModel>(context).title;
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Flutter login demo"),
+        title: new Text("$title"),
       ),
       body: new Container(
           child: Center(
