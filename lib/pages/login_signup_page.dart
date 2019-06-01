@@ -31,8 +31,9 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
       body: new Container(
           child: Center(
               child: MaterialButton(
-        onPressed: _handleSignIn,
-        child: Text("Login"),
+              shape: Border.all(width: 2.0, color: Colors.blueAccent),
+              onPressed: _handleSignIn,
+              child: Text("Login"),
       ))),
     );
   }
