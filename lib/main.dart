@@ -35,7 +35,7 @@ class MyStatelessWidget extends StatelessWidget {
       model: FllocalModel(),
       child: MaterialApp(
           title: 'Scoped Model Demo',
-          home: OverviewPage()),
+          home: LoginSignUpPage()),
     );
   }
 

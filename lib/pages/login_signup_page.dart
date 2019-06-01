@@ -1,3 +1,4 @@
+import 'package:fllocal/pages/overview_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -36,11 +37,19 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
       ),
       body: new Container(
           child: Center(
-              child: MaterialButton(
+              child: Column(
+                children: [MaterialButton(
               shape: Border.all(width: 2.0, color: Colors.blueAccent),
               onPressed: _handleSignIn,
               child: Text("Sign In with Google"),
-      ))),
+      ),
+      MaterialButton(
+              shape: Border.all(width: 2.0, color: Colors.blueAccent),
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => OverviewPage())),
+              child: Text("Load Overview"),
+      )
+      ])),
+    )
     );
-  }
+}
 }
