@@ -4,11 +4,13 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:fllocal/pages/login_signup_page.dart';
+
 void main() => runApp(MyApp());
 
 /// This Widget is the main application widget.
 class MyApp extends StatelessWidget {
-  static const String _title = 'Flutter Code Sample';
+  static const String _title = 'Fllocal';
 
   @override
   Widget build(BuildContext context) {
@@ -25,20 +27,11 @@ class MyStatelessWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Ready, Set, Shop!'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.shopping_cart),
-            tooltip: 'Open shopping cart',
-            onPressed: () {
-              // Implement navigation to shopping cart page here...
-              print('Shopping cart opened.');
-            },
-          ),
-        ],
-      ),
-    );
+    return new MaterialApp(
+        title: 'Fllocal',
+        theme: new ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: new LoginSignUpPage());
   }
 }
