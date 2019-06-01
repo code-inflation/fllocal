@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "65772098836",
+    "firebase_url": "https://fllocal.firebaseio.com",
+    "project_id": "fllocal",
+    "storage_bucket": "fllocal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:65772098836:android:bbe927e9cc6e550e",
+        "android_client_info": {
+          "package_name": "info.fllocal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "65772098836-2ef6ovkjo67pifbmvkkfvennitacd1or.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYWb_544ebZrR9VEsjZHNtf9mo85K8rmo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "65772098836-2ef6ovkjo67pifbmvkkfvennitacd1or.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
