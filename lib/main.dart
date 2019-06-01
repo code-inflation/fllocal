@@ -3,8 +3,11 @@
 // This sample shows adding an action to an [AppBar] that opens a shopping cart.
 
 import 'package:flutter/material.dart';
-
+import 'package:scoped_model/scoped_model.dart';
 import 'package:fllocal/pages/login_signup_page.dart';
+
+import 'models/fllocal_model.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -27,11 +30,12 @@ class MyStatelessWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-        title: 'Fllocal',
-        theme: new ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: new LoginSignUpPage());
+    return ScopedModel<FllocalModel>(
+      model: FllocalModel(),
+      child: MaterialApp(
+          title: 'Scoped Model Demo',
+          home: LoginSignUpPage()),
+    );
   }
+
 }
