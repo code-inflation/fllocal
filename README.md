@@ -1,6 +1,11 @@
 # fllocal
 
-A new Flutter application.
+A new Flutter application. Part of the 2019 flutter Hackathon - Zurich
+
+Borders.none(): Building a Borderless Global Flutter Community
+
+This App is intended to give you the opportunity to connect with a local Flutter community for in person meetings, to socialize, to discuss and develop ideas. 
+The location where you would like to connect to can get selected. This way you can "borderlessly" travel and meet the active community at your destiantion.
 
 ## Getting Started
 
