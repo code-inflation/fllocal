@@ -23,7 +23,6 @@ Future<FirebaseUser> _handleSignIn(BuildContext context) async {
     context,
     MaterialPageRoute(
       builder: (context) => StartPage(),
-
     ),
   );
   return user;
@@ -45,9 +44,9 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
       body: new Container(
           child: Center(
               child: MaterialButton(
-              shape: Border.all(width: 2.0, color: Colors.blueAccent),
-              onPressed: ()=> _handleSignIn(context),
-              child: Text("Sign In with Google"),
+        shape: Border.all(width: 2.0, color: Colors.blueAccent),
+        onPressed: () => _handleSignIn(context),
+        child: Text("Sign In with Google"),
       ))),
     );
   }

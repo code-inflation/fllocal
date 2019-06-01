@@ -29,6 +29,7 @@ class NewPostForm extends StatefulWidget {
     return NewPostFormState();
   }
 }
+
 class NewPostFormState extends State<NewPostForm> {
   // Create a global key that will uniquely identify the Form widget and allow
   // us to validate the form
@@ -42,54 +43,54 @@ class NewPostFormState extends State<NewPostForm> {
     final postMessage = TextEditingController();
 
     return Form(
-        key: _newPostKey,
-        child: Column(
-          children: <Widget>[
-            TextFormField(
-              controller: postTitle,
-              decoration: InputDecoration(
-                labelText: 'Post title',
-              ),
+      key: _newPostKey,
+      child: Column(
+        children: <Widget>[
+          TextFormField(
+            controller: postTitle,
+            decoration: InputDecoration(
+              labelText: 'Post title',
             ),
-            TextFormField(
-              controller: postMessage,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Type text...',
-              ),
-              validator: (value) {
-                if (value.isEmpty) {
-                  return 'Please some text ..';
+          ),
+          TextFormField(
+            controller: postMessage,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Type text...',
+            ),
+            validator: (value) {
+              if (value.isEmpty) {
+                return 'Please some text ..';
+              }
+            },
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: FloatingActionButton(
+              onPressed: () {
+                // Validate will return true if the form is valid, or false if
+                // the form is invalid.
+                if (_newPostKey.currentState.validate()) {
+                  // If the form is valid, we want to show a Snackbar
+                  Scaffold.of(context)
+                      .showSnackBar(SnackBar(content: Text('Processing Data')));
                 }
+                Post post = new Post(postTitle.text, postMessage.text,
+                    new DateTime.now(), "todo:author");
+                ScopedModel.of<FllocalModel>(context).posts.add((post));
+
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PostPage(post: post),
+                  ),
+                );
               },
+              child: Text('Submit'),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: FloatingActionButton(
-                onPressed: () {
-                  // Validate will return true if the form is valid, or false if
-                  // the form is invalid.
-                  if (_newPostKey.currentState.validate()) {
-                    // If the form is valid, we want to show a Snackbar
-                    Scaffold.of(context)
-                        .showSnackBar(SnackBar(content: Text('Processing Data')));
-                  }
-                  Post post = new Post(postTitle.text, postMessage.text, new DateTime.now(), "todo:author");
-                  ScopedModel.of<FllocalModel>(context).posts.add((post));
-
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PostPage(post : post),
-
-                    ),
-                  );
-                },
-                child: Text('Submit'),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
+      ),
     );
   }
 }

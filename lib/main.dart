@@ -10,7 +10,6 @@ import 'package:fllocal/pages/new_post_page.dart';
 
 import 'models/fllocal_model.dart';
 
-
 void main() => runApp(MyApp());
 
 /// This Widget is the main application widget.
@@ -34,10 +33,7 @@ class MyStatelessWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScopedModel<FllocalModel>(
       model: FllocalModel(),
-      child: MaterialApp(
-          title: 'Scoped Model Demo',
-          home: LoginSignUpPage()),
+      child: MaterialApp(title: 'Scoped Model Demo', home: LoginSignUpPage()),
     );
   }
-
 }

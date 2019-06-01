@@ -4,6 +4,7 @@ import 'package:fllocal/models/fllocal_model.dart';
 
 class PostPage extends StatefulWidget {
   final Post post;
+
   PostPage({@required this.post}) : super();
 
   @override
@@ -12,7 +13,9 @@ class PostPage extends StatefulWidget {
 
 class _PostPageState extends State<PostPage> {
   final Post post;
+
   _PostPageState({@required this.post}) : super();
+
   @override
   Widget build(BuildContext context) {
     String title = ScopedModel.of<FllocalModel>(context).title;
