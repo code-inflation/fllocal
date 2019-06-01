@@ -5,6 +5,8 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:fllocal/pages/login_signup_page.dart';
+import 'package:fllocal/pages/post_page.dart';
+import 'package:fllocal/pages/new_post_page.dart';
 
 import 'models/fllocal_model.dart';
 
