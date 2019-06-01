@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-GoogleSignIn _googleSignIn = GoogleSignIn(
-  scopes: <String>[
-    'email',
-    'https://www.googleapis.com/auth/contacts.readonly',
-  ],
-);
+final GoogleSignIn _googleSignIn = GoogleSignIn();
+final FirebaseAuth _auth = FirebaseAuth.instance;
+
+Future<FirebaseUser> _handleSignIn() async {
+  final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+  final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+  final AuthCredential credential = GoogleAuthProvider.getCredential(
+    accessToken: googleAuth.accessToken,
+    idToken: googleAuth.idToken,
+  );
+
+  final FirebaseUser user = await _auth.signInWithCredential(credential);
+  print("signed in " + user.displayName);
+  return user;
+}
 
 class LoginSignUpPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => new _LoginSignUpPageState();
-}
-
-Future<void> _handleSignIn() async {
-  try {
-    await _googleSignIn.signIn();
-  } catch (error) {
-    print(error);
-  }
 }
 
 class _LoginSignUpPageState extends State<LoginSignUpPage> {
@@ -33,7 +36,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
               child: MaterialButton(
               shape: Border.all(width: 2.0, color: Colors.blueAccent),
               onPressed: _handleSignIn,
-              child: Text("Login"),
+              child: Text("Sign In with Google"),
       ))),
     );
   }
