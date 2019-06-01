@@ -1,7 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:fllocal/models/fllocal_model.dart';
 import 'package:fllocal/pages/post_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class NewPostPage extends StatefulWidget {
   @override
@@ -66,7 +70,8 @@ class NewPostFormState extends State<NewPostForm> {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: FloatingActionButton(
+            child: MaterialButton(
+              shape: Border.all(width: 2.0, color: Colors.blueAccent),
               onPressed: () {
                 // Validate will return true if the form is valid, or false if
                 // the form is invalid.
@@ -75,9 +80,13 @@ class NewPostFormState extends State<NewPostForm> {
                   Scaffold.of(context)
                       .showSnackBar(SnackBar(content: Text('Processing Data')));
                 }
+
                 Post post = new Post(postTitle.text, postMessage.text,
                     new DateTime.now(), "todo:author");
                 ScopedModel.of<FllocalModel>(context).posts.add((post));
+
+                CollectionReference posts = Firestore.instance.collection('posts');
+                posts.add(post.toJson());
 
                 Navigator.push(
                   context,

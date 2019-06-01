@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'new_post_page.dart';
+
 class OverviewPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => new _OverviewPageState();
@@ -15,15 +17,20 @@ class _OverviewPageState extends State<OverviewPage> {
         appBar: new AppBar(
           title: new Text("title"),
         ),
-        floatingActionButton:FloatingActionButton(onPressed:() => _addPost(),child: Icon(Icons.add)),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => NewPostPage(),
+              ),
+            );
+          },
+          child: Icon(Icons.add),
+        ),
         body: Container(
           child: StreamBuilder(
-            stream: Firestore.instance.collection('posts')
-            
-            .snapshots(),
-           
-           
-           
+            stream: Firestore.instance.collection('posts').snapshots(),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
                 return Center(
@@ -49,17 +56,13 @@ class _OverviewPageState extends State<OverviewPage> {
     return Card(child: Text(document.data['header']));
   }
 
-   _addPost(){
-      var databaseRef = Firestore.instance.collection('posts');
-      
-      databaseRef.add({
-          'topic' : 'questions',
-          'header' : 'Header ${DateTime.now().microsecond}',
-          'body' : 'Message ${DateTime.now().microsecond}'
-      }
-        
-      );
+  _addPost() {
+    var databaseRef = Firestore.instance.collection('posts');
 
-
+    databaseRef.add({
+      'topic': 'questions',
+      'header': 'Header ${DateTime.now().microsecond}',
+      'body': 'Message ${DateTime.now().microsecond}'
+    });
   }
 }

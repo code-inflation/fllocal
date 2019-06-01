@@ -13,4 +13,11 @@ class Post {
   String author;
 
   Post(this.postTitle, this.postMessage, this.now, this.author);
+
+  Map<String, dynamic> toJson() =>
+      {
+        'header': postTitle,
+        'body': author,
+        'topic': 'Hackathon'
+      };
 }

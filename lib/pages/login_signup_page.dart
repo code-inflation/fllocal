@@ -38,24 +38,26 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
   Widget build(BuildContext context) {
     String title = ScopedModel.of<FllocalModel>(context).title;
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("$title"),
-      ),
-      body: new Container(
+        appBar: new AppBar(
+          title: new Text("$title"),
+        ),
+        body: new Container(
           child: Center(
-              child: Column(
-                children: [MaterialButton(
+              child: Column(children: [
+            MaterialButton(
               shape: Border.all(width: 2.0, color: Colors.blueAccent),
-              onPressed: () =>_handleSignIn,
+              onPressed: () => _handleSignIn,
               child: Text("Sign In with Google"),
-      ),
-      MaterialButton(
+            ),
+            MaterialButton(
               shape: Border.all(width: 2.0, color: Colors.blueAccent),
-              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => OverviewPage())),
+              onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => OverviewPage())),
               child: Text("Load Overview"),
-      )
-      ])),
-    )
-    );
-}
+            )
+          ])),
+        ));
+  }
 }
