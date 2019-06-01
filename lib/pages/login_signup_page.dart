@@ -8,7 +8,7 @@ import 'package:fllocal/models/fllocal_model.dart';
 final GoogleSignIn _googleSignIn = GoogleSignIn();
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
-Future<FirebaseUser> _handleSignIn() async {
+Future<FirebaseUser> _handleSignIn(BuildContext context) async {
   final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
   final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
 
@@ -19,6 +19,12 @@ Future<FirebaseUser> _handleSignIn() async {
 
   final FirebaseUser user = await _auth.signInWithCredential(credential);
   print("signed in " + user.displayName);
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => OverviewPage(),
+    ),
+  );
   return user;
 }
 
@@ -40,7 +46,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
               child: Column(
                 children: [MaterialButton(
               shape: Border.all(width: 2.0, color: Colors.blueAccent),
-              onPressed: _handleSignIn,
+              onPressed: () =>_handleSignIn,
               child: Text("Sign In with Google"),
       ),
       MaterialButton(
