@@ -1,6 +1,7 @@
 # fllocal
 
-A new Flutter application.
+A new Flutter application. Part of the Flutter Hackathon 2019
+
 
 ## Getting Started
 
