@@ -1,4 +1,5 @@
 # fllocal
+![Flutter hackathon 2019](/FlutterHackathon2019.png)
 
 A new Flutter application. Part of the Flutter Hackathon 2019
 
